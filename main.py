@@ -1,0 +1,3 @@
+import evoker
+
+evoker.run()

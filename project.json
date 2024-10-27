@@ -1,0 +1,11 @@
+{
+    "project": {
+        "name": "ExampleApp",
+        "version": "0.0.1"
+    },
+    "evoker": {
+        "source": "src",
+        "main": "/main",
+        "maxFps": 60
+    }
+}

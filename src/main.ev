@@ -1,0 +1,14 @@
+<config>
+    <setting for="title" value="Hello World" />
+</config>
+
+<script>
+    print("Hello World!")
+</script>
+
+<body>
+    <p fg="MAGENTA">Example App</p>
+    <p fg="BLACK" bg="MAGENTA" width="20">Hello World!</p>
+    <a href="/test">Go 2 test page</a>
+    <input placeholder="Your Name" />
+</body>

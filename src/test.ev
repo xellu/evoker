@@ -1,0 +1,9 @@
+<config>
+    <setting for="title" value="Hello World" />
+</config>
+
+<body>
+    <p fg="MAGENTA">Test Page</p>
+    <a href="/main" fg="MAGENTA" width="100%"><- Go back</a>
+    <fps />
+</body>
