@@ -104,6 +104,8 @@ def get(key):
     return KEY_MAP.get(str(key), chr(key))
 
 def get_char(key):
+    if key == 0: return ""
+    
     char = KEY_MAP.get(str(key), chr(key))
     match char:
         case "enter":
