@@ -1,6 +1,5 @@
 # The Evoker Project
-The goal of Evoker is to make desktop app development easier, using python and custom markdown language.
-I want to make something like electronjs but less complicated and faster to develop in.
+The goal of this project is to create a way to easily create pretty CLI interfaces using Python and a weird version of HTML.
 
 # Page Structure
 
