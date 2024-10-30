@@ -18,7 +18,7 @@ class Redirect(Element):
             "width": len(self.content),
             "href": "",
         }
-        self._id = self.elements.get("id")
+        self._id = self.element.get("id")
         
         self.parse_attributes()
         

@@ -40,6 +40,8 @@ class Runner:
             #"BLUE_BLACK": index (fg: blue, bg: black)
             #"CYAN_YELLOW": index (fg: cyan, bg: yellow)
         }
+        
+        self.page_elements = []
 
     def get_page(self, route):
         for page in self.pages:
@@ -95,6 +97,9 @@ class Runner:
                     raise ValueError(f"Page '{self.route}' not found")
                     
                 page.on_render(self)
+                
+                if page.elements != None:
+                    self.page_elements = page.elements
                 
                 sc.refresh()
             except Exception as e:

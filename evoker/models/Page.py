@@ -70,7 +70,6 @@ class Page:
                 self.elements.append(el)
                 
                 y += 1
-                
               
         focusable = 0         
         for tag in self.elements:
