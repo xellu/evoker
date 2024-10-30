@@ -7,7 +7,7 @@ class Input(Element):
     def __init__(self, app, pos: Position, content, element, focused=False):
         self.app = app
         self.pos = pos
-        self.content = ""
+        self.value = ""
         self.placeholder = element.attrs.get("placeholder", "")
         self.element = element
         
@@ -17,9 +17,10 @@ class Input(Element):
             "fg": "BLACK",
             "bg": "WHITE",
             "focused": "BLUE",
-            "width": len(self.placeholder) if len(self.placeholder) > 16 else 16,
+            "width": len(self.placeholder) if len(self.placeholder) > 16 else 16
         }
         self.focused = focused
+        self._id = self.elements.get("id")
         
         self.parse_attributes()
         
@@ -45,7 +46,7 @@ class Input(Element):
         
         sc.addstr(self.attributes['y'], self.attributes['x'], " "*width, color)
         
-        content = self.content if self.content or self.focused else self.placeholder
+        content = self.value if self.value or self.focused else self.placeholder
         if self.focused:
             content += "_" if self.focused and time.time() % 1 > 0.5 else " " #blinking cursor
                 
@@ -73,8 +74,8 @@ class Input(Element):
             case "enter":
                 pass
             case "backspace":
-                self.content = self.content[:-1]
+                self.value = self.value[:-1]
             case "ctrl_backspace":
-                self.content = ""
+                self.value = ""
             case _:
-                self.content += Keymap.get_char(key)
+                self.value += Keymap.get_char(key)

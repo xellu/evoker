@@ -18,6 +18,7 @@ class Fps(Element):
             "width": len(self.content),
         }
         
+        self._id = self.elements.get("id")
         self.page = 0 #0-2
         
         self.parse_attributes()

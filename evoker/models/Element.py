@@ -18,6 +18,7 @@ class Element:
             "fg": "WHITE",
             "bg": "BLACK"
         }
+        self._id = self.elements.get("id")
         
     def on_render(self, sc):
         sc.addstr(self.pos.y, self.pos.x, self.content)
