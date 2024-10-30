@@ -20,7 +20,6 @@ class Input(Element):
             "width": len(self.placeholder) if len(self.placeholder) > 16 else 16
         }
         self.focused = focused
-        self._id = self.element.get("id")
         
         self.parse_attributes()
         

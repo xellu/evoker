@@ -8,7 +8,7 @@
 
 <body>
     <p fg="MAGENTA">Example App</p>
-    <p fg="BLACK" bg="MAGENTA" width="20">Hello World!</p>
+    <p fg="BLACK" bg="MAGENTA" width="20" id="negr">Hello World!</p>
     <a href="/test">Go 2 test page</a>
     <input placeholder="Your Name" />
 </body>

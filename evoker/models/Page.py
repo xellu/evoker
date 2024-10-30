@@ -67,6 +67,8 @@ class Page:
                 
                 el = el.copy()
                 el["instance"] = el['class'](app, Position(0, y), tag.text, tag, False)
+                el["id"] = tag.get("id")
+                el["classNames"] = tag.get("class")
                 self.elements.append(el)
                 
                 y += 1
@@ -106,3 +108,9 @@ class Page:
                     focusables.append(tag)
                     
             focusables[self.tab_index]['instance'].on_input(key)
+            
+    def on_load(self):
+        print(f"Page '{self.route}' loaded")
+        
+    def on_unload(self):
+        print(f"Page '{self.route}' unloaded")

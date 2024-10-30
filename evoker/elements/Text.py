@@ -14,7 +14,6 @@ class Text(Element):
             "bg": "BLACK",
             "width": len(self.content),
         }
-        self._id = self.element.get("id")
         
         self.parse_attributes()
         

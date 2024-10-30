@@ -62,7 +62,14 @@ class Runner:
         return curses.color_pair(self.colors[f"{fg}_{bg}"])
         
     def redirect(self, route):
+        current_page, new_page = self.get_page(self.route), self.get_page(route)
+        if current_page != None:
+            current_page.on_unload()
+            
         self.route = route
+        
+        if new_page != None:
+            new_page.on_load()
         
     def run(self):
         self.running = True
@@ -100,7 +107,7 @@ class Runner:
                 
                 if page.elements != None:
                     self.page_elements = page.elements
-                
+                    
                 sc.refresh()
             except Exception as e:
                 sc.erase()
