@@ -17,7 +17,7 @@ class Runner:
         if len(self.pages) == 0:
             raise ValueError("No pages provided")
         
-        self.route = EVProject.get("evoker", {}).get("main", "/main")
+        self.route = None
         self.running = False
         
         self.screenX = os.get_terminal_size().columns
@@ -41,7 +41,11 @@ class Runner:
             #"CYAN_YELLOW": index (fg: cyan, bg: yellow)
         }
         
+        self.script_thread = None
+        
         self.page_elements = []
+        
+        self.redirect(EVProject.get("evoker", {}).get("main", "/main")) #load the main page
 
     def get_page(self, route):
         for page in self.pages:
@@ -61,15 +65,29 @@ class Runner:
     def color(self, fg, bg="BLACK"):
         return curses.color_pair(self.colors[f"{fg}_{bg}"])
         
+    def script_runner(self, script):
+        try:
+            exec(script)
+        except Exception as e:
+            logger.error(f"Error running script: {e}")
+        
     def redirect(self, route):
         current_page, new_page = self.get_page(self.route), self.get_page(route)
         if current_page != None:
             current_page.on_unload()
+            if self.script_thread != None:
+                self.script_thread.join()
             
         self.route = route
         
         if new_page != None:
+            #trigger page load event
             new_page.on_load()
+            
+            #run script thread
+            if new_page.runnable.script != None:
+                self.script_thread = threading.Thread(target=self.script_runner, args=(new_page.runnable.script,))
+                self.script_thread.start()
         
     def run(self):
         self.running = True

@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 from ..elements import elements
 from ..models.Element import Position
-from ..ext import Keymap
+from ..ext import Keymap, Events
 
 class Page:
     def __init__(self, path: PathLike):
@@ -36,6 +36,7 @@ class Page:
         self.bs = BeautifulSoup(self.source, "html.parser")
         self.body = self.bs.find("body")
         
+        self.eventer = Events.EventBus()
         self.elements = None
         
     def on_render(self, app):
@@ -110,7 +111,11 @@ class Page:
             focusables[self.tab_index]['instance'].on_input(key)
             
     def on_load(self):
+        self.eventer = Events.EventBus()
+        
         print(f"Page '{self.route}' loaded")
         
-    def on_unload(self):
+    def on_unload(self): 
+        self.eventer.trigger("unload")
+        
         print(f"Page '{self.route}' unloaded")
